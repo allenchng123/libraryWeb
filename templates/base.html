@@ -1,0 +1,15 @@
+{% load static %}
+
+{% static "images" as baseUrl %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'js/javascript.js' %}"></script>
+</html>

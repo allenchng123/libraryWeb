@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form id="contact">
+    <h3>Result Book</h3>
+    <a href="/">Search Again</a> 
+    <fieldset id="fieldSetContent">
+        <ul>
+            {% if books %}
+                {% for book in books %}
+                    <div id="resultDiv">
+                        {% if book.img %}
+                            <img src="{{book.img.url}}" alt="">
+                        {% endif %}
+                        <h3>{{book.title|title}}</h3>
+                        <p>Author: {{book.author}}</p>
+                        <p>Publisher: {{book.publisher}}</p>
+                        <p>description: {{book.description}}</p>
+
+                        {% if not book.userId %}
+                            <p>Status : Available</p>
+                        {% else %}
+                            <p>Date of Borrow: {{book.dateOfBorrow}}</p>
+                            <p>Expiry: {{book.dateOfReturn}}</p>
+                            <p>Status : Not Available</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                    {% if books.has_previous %}
+                        <a href="{{ books.url }}&page=1">First</a>
+                        <a href="{{ books.url }}&page={{ books.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    
+                    <span>{{ books.number }}</span>
+                    <span>of</span>
+                    <span>{{ books.paginator.num_pages }}</span>
+                    
+                    {% if books.has_next %}
+                        <a href="{{ books.url }}&page={{ books.next_page_number }}">Next</a>
+                        <a href="{{ books.url }}&page={{ books.paginator.num_pages }}">Last</a>
+                    {% endif %}
+            {% else %}
+                <div>
+                    <h2>No data match the filtering criteria</h2>
+                </div>
+            {% endif %}
+        </ul>
+    </fieldset>
+</form>
+{% endblock %}

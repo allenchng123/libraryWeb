@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form id="contact" action="result">
+    <h3>Library Search Book</h3>
+    {{ form.as_p }}
+    <fieldset>
+        <button name="submit" type="submit" id="contact-submit">Submit</button>
+
+    </fieldset>
+</form>
+{% endblock %}
